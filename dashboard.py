@@ -116,16 +116,6 @@ We simulated a 2% anomaly baseline to generate **precision and recall metrics**.
 """)
 show_img("results/confusion_matrix.png", "Confusion Matrix on Prediction Log")
 
-# SECTION 8: Retraining Behavior
-st.header("8. Model Retraining Timeline")
-st.markdown("""
-We logged each **retraining event** triggered by concept drift.
-
-- Early retrains used ~36 points
-- Later retrains used too few — suggesting **batch retraining** would be better
-
-""")
-show_img("results/retraining_timeline.png", "Model Retraining Events Over Time")
 
 # SECTION 9: Recommendations
 st.header("9. Strategic Recommendations")

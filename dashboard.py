@@ -99,10 +99,6 @@ st.markdown("""
 - **Most anomalies** occurred during clustered timestamps (possible batch pattern)
 """)
 
-# SECTION 8: Retraining Timeline
-st.header("8. Model Retraining Behavior")
-show_img("results/retraining_timeline.png", "Retraining Events Timeline (Model Versions Over Time)")
-
 # SECTION 9: Recommendations
 st.header("9. Recommendations")
 st.markdown("""

@@ -49,9 +49,8 @@ The pipeline worked as follows:
 st.header("3. Real-Time Anomaly Detection")
 st.markdown("**Anomalies vs Normal Signals:**")
 
-show_img("results/ECG Signals with Anomalies Highlighted.png", "ECG Signals with Highlighted Anomalies")
-st.markdown("**Anomaly Count Over Time:**")
-show_img("results/Anomaly Count per Simulated Minute.png", "Anomaly Density per Simulated Minute")
+show_img("results/ECG Signals with Anomalies Highlighted.png", "ECG Signals with Highlighted Anomalies", width=900)
+show_img("results/Anomaly Count per Simulated Minute.png", "Anomaly Density per Simulated Minute", width=900)
 
 st.info("**Label Summary:**  \nAnomaly Count: 5,187  Normal Count: 23,723  Total Records: 28,910")
 
@@ -61,7 +60,7 @@ st.markdown("""
 We used **z-score** thresholds and **distributional shift** testing (KS-Test) to detect drift.  
 If anomaly density spiked beyond a set threshold, retraining was triggered.
 """)
-show_img("results/Z-Scores of ECG Signals Over Time.png", "Z-Score Trend with Anomaly Thresholds")
+show_img("results/Z-Scores of ECG Signals Over Time.png", "Z-Score Trend with Anomaly Thresholds", width=900)
 show_img("results/Heatmap of Anomalies by Hour and Day.png", "Heatmap: Anomalies by Hour and Day")
 
 # SECTION 5: Explainability
@@ -78,6 +77,7 @@ with col2:
     show_img("results/Anomalous Points in Z-Score Space.png", "Z-Scores of Anomalous Points")
 
 show_img("results/Z-Score vs Anomaly Score (ECG1).png", "Z-Score vs Anomaly Score (ECG1)")
+show_img("results/Z-Score vs Anomaly Score (ECG2).png", "Z-Score vs Anomaly Score (ECG2)")
 
 # SECTION 6: Local Anomaly Windows
 st.header("6. Local ECG Window Around Anomalies")
@@ -90,14 +90,14 @@ show_img("results/confusion_matrix.png", "Confusion Matrix on Prediction Log")
 
 st.markdown("""
 **Key Takeaways:**
-- **High precision** on anomaly detection (~98%)
-- **Model retraining** helped adapt to drift during streaming
+- **High precision** on anomaly detection (~98%)  
+- **Model retraining** helped adapt to drift during streaming  
 - **Most anomalies** occurred during clustered timestamps (possible batch pattern)
 """)
 
 # SECTION 8: Retraining Timeline
 st.header("8. Model Retraining Behavior")
-show_img("results/Distribution of Isolation Forest Anomaly Scores.png", "Retraining Events Timeline (model count simulated)")
+show_img("results/retraining_timeline.png", "Retraining Events Timeline (Model Versions Over Time)")
 
 # SECTION 9: Recommendations
 st.header("9. Recommendations")

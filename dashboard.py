@@ -50,7 +50,7 @@ The pipeline worked as follows:
 2. **Consumer** performed real-time anomaly detection
 3. When drift was detected, the model was **retrained** and logged
 4. Final predictions and model were evaluated at the end
-)
+""")
 
 # SECTION 3: Real-Time Insights
 st.header("3. Real-Time Anomaly Detection")
@@ -90,30 +90,34 @@ with col2:
 show_img("results/zscore_vs_anomaly_score.png", "Z-Score vs Anomaly Score (ECG1)")
 
 # SECTION 6: Local Anomaly Windows
-st.header("6. 🔬 Local ECG Window Around Anomalies")
+st.header("6. Local ECG Window Around Anomalies")
 show_img("results/anomaly_window_view.png", "Snapshot of ECG Signal Around Detected Anomaly")
 
 # SECTION 7: Model Evaluation
-st.header("7. 📊 Model Evaluation Summary")
+st.header("7. Model Evaluation Summary")
 st.markdown("**Simulated Evaluation (2% Anomaly Assumption):**")
 show_img("results/confusion_matrix.png", "Confusion Matrix on Prediction Log")
 
 st.markdown("""
 **Key Takeaways:**
-- **High precision** on anomaly detection (≈98%)
+- **High precision** on anomaly detection (~98%)
 - **Model retraining** helped adapt to drift during streaming
 - **Most anomalies** occurred during clustered timestamps (possible batch pattern)
 """)
 
-# SECTION 8: Recommendations
-st.header("8. 📝 Recommendations")
+# SECTION 8: Retraining Timeline
+st.header("8. Model Retraining Behavior")
+show_img("results/retraining_timeline.png", "Retraining Events Timeline (Model Versions Over Time)")
+
+# SECTION 9: Recommendations
+st.header("9. Recommendations")
 st.markdown("""
 Based on the analysis and streaming behavior:
 
-✅ Implement **batch retraining** once drift is detected, not per anomaly spike
-✅ Add **domain rules** (e.g., BPM thresholds) for hybrid logic
-✅ Use dashboard in **clinical monitoring setups** with alerting logic
-✅ Replace dummy ground truth with expert-labeled ECGs for real validation
+- ✅ Implement **batch retraining** once drift is detected, not per anomaly spike
+- ✅ Add **domain rules** (e.g., BPM thresholds) for hybrid logic
+- ✅ Use dashboard in **clinical monitoring setups** with alerting logic
+- ✅ Replace dummy ground truth with expert-labeled ECGs for real validation
 """)
 
 # Footer

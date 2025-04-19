@@ -76,8 +76,12 @@ with col1:
 with col2:
     show_img("results/Anomalous Points in Z-Score Space.png", "Z-Scores of Anomalous Points")
 
-show_img("results/Z-Score vs Anomaly Score (ECG1).png", "Z-Score vs Anomaly Score (ECG1)")
-show_img("results/Z-Score vs Anomaly Score (ECG2).png", "Z-Score vs Anomaly Score (ECG2)")
+col1, col2 = st.columns(2)
+with col1:
+    show_img("results/Z-Score vs Anomaly Score (ECG1).png", "Z-Score vs Anomaly Score (ECG1)", width=400)
+with col2:
+    show_img("results/Z-Score vs Anomaly Score (ECG2).png", "Z-Score vs Anomaly Score (ECG2)", width=400)
+
 
 # SECTION 6: Local Anomaly Windows
 st.header("6. Local ECG Window Around Anomalies")

@@ -61,7 +61,6 @@ We used **z-score** thresholds and **distributional shift** testing (KS-Test) to
 If anomaly density spiked beyond a set threshold, retraining was triggered.
 """)
 show_img("results/Z-Scores of ECG Signals Over Time.png", "Z-Score Trend with Anomaly Thresholds", width=900)
-show_img("results/Heatmap of Anomalies by Hour and Day.png", "Heatmap: Anomalies by Hour and Day")
 
 # SECTION 5: Explainability
 st.header("5. Model Interpretability")

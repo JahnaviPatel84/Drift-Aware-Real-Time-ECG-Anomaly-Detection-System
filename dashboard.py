@@ -1,18 +1,17 @@
 import streamlit as st
 from PIL import Image
-import pandas as pd
 
 st.set_page_config(
     page_title="ECG Anomaly Detection Report",
     layout="wide"
 )
 
-# Utility function
-def show_img(path, caption=None, width=None):
+# Utility function to safely display images
+def show_img(path, caption=None, width=600):
     try:
-        st.image(Image.open(path), caption=caption, use_column_width=width is None, width=width)
+        st.image(Image.open(path), caption=caption, use_container_width=False, width=width)
     except FileNotFoundError:
-        st.warning(f"Image not found: {path}")
+        st.warning(f"Image not found: `{path}`")
 
 # Title
 st.title("ECG Anomaly Detection: Final Report")
@@ -36,7 +35,7 @@ We built:
 - Visual & explainability insights using **matplotlib** and **Streamlit**
 """)
 
-# SECTION 2: System Architecture
+# SECTION 2: System Design
 st.header("2. System Design")
 st.markdown("""
 The pipeline worked as follows:
@@ -46,41 +45,39 @@ The pipeline worked as follows:
 4. Final predictions and model were evaluated at the end  
 """)
 
-# SECTION 3: Real-Time Insights
+# SECTION 3: Real-Time Anomaly Detection
 st.header("3. Real-Time Anomaly Detection")
 st.markdown("**Anomalies vs Normal Signals:**")
 
 show_img("results/ECG Signals with Anomalies Highlighted.png", "ECG Signals with Highlighted Anomalies")
-
-st.markdown("**Anomaly Count:** 5,187  **Normal Count:** 23,723  **Total Records:** 28,910")
-
 st.markdown("**Anomaly Count Over Time:**")
 show_img("results/Anomaly Count per Simulated Minute.png", "Anomaly Density per Simulated Minute")
+
+st.info("**Label Summary:**  \nAnomaly Count: 5,187  Normal Count: 23,723  Total Records: 28,910")
 
 # SECTION 4: Drift Detection
 st.header("4. Concept Drift Monitoring")
 st.markdown("""
-We used **z-score** thresholds and **distributional shift** testing (KS-Test) to detect drift.
+We used **z-score** thresholds and **distributional shift** testing (KS-Test) to detect drift.  
 If anomaly density spiked beyond a set threshold, retraining was triggered.
 """)
-show_img("results/Z-Scores of ECG Signals Over Time.png", "Z-Score Trend of ECG1 and ECG2")
+show_img("results/Z-Scores of ECG Signals Over Time.png", "Z-Score Trend with Anomaly Thresholds")
 show_img("results/Heatmap of Anomalies by Hour and Day.png", "Heatmap: Anomalies by Hour and Day")
 
 # SECTION 5: Explainability
 st.header("5. Model Interpretability")
 st.markdown("""
-We extracted raw anomaly scores from the Isolation Forest to visualize how certain predictions were made.
+We extracted raw anomaly scores from the Isolation Forest to visualize how certain predictions were made.  
 The lower the score, the more likely the instance was anomalous.
 """)
 
 col1, col2 = st.columns(2)
 with col1:
-    show_img("results/Distribution of Isolation Forest Anomaly Scores.png", "Anomaly Score Distribution")
+    show_img("results/Distribution of Isolation Forest Anomaly Scores.png", "Distribution of Anomaly Scores")
 with col2:
-    show_img("results/Z-Score vs Anomaly Score (ECG1).png", "Z-Score vs Anomaly Score (ECG1)")
+    show_img("results/Anomalous Points in Z-Score Space.png", "Z-Scores of Anomalous Points")
 
-show_img("results/Z-Score vs Anomaly Score (ECG2).png", "Z-Score vs Anomaly Score (ECG2)")
-show_img("results/Anomalous Points in Z-Score Space.png", "Anomalous Points in Z-Score Space")
+show_img("results/Z-Score vs Anomaly Score (ECG1).png", "Z-Score vs Anomaly Score (ECG1)")
 
 # SECTION 6: Local Anomaly Windows
 st.header("6. Local ECG Window Around Anomalies")
@@ -100,7 +97,7 @@ st.markdown("""
 
 # SECTION 8: Retraining Timeline
 st.header("8. Model Retraining Behavior")
-show_img("results/retraining_timeline.png", "Retraining Events Timeline (Model Versions Over Time)")
+show_img("results/Distribution of Isolation Forest Anomaly Scores.png", "Retraining Events Timeline (model count simulated)")
 
 # SECTION 9: Recommendations
 st.header("9. Recommendations")
